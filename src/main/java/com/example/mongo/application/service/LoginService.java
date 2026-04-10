@@ -10,13 +10,24 @@ import java.util.Optional;
 public class LoginService {
 
     private final LoginRepository repository;
+    private final EmailService emailService;
 
-    public LoginService(LoginRepository repository) {
+    public LoginService(LoginRepository repository, EmailService emailService) {
+
         this.repository = repository;
+        this.emailService = emailService;
     }
 
     public Login salvar(Login login) {
-        return repository.save(login);
+
+        Login novoLogin = repository.save(login);
+
+        emailService.enviarEmail(
+                login.getEmail(),
+                "Seu login foi realizado com sucesso!"
+        );
+
+        return novoLogin;
     }
 
     public Login atualizar(String id, Login novo) {

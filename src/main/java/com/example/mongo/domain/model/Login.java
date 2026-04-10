@@ -12,6 +12,7 @@ public class Login {
     private String id;
     private String username;
     private String senha;
+    private String email;
     private List<String> roles;
 
     public Login() {}
@@ -39,6 +40,12 @@ public class Login {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) { this.email = email; }
 
     public List<String> getRoles() {
         return roles;
